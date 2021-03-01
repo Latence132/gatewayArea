@@ -1,0 +1,29 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [
+    {
+      "relationshipName": "card",
+      "otherEntityName": "card",
+      "relationshipType": "many-to-many",
+      "otherEntityField": "id",
+      "ownerSide": true,
+      "otherEntityRelationshipName": "cardGroup"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20210301144850",
+  "dto": "no",
+  "searchEngine": false,
+  "service": "serviceImpl",
+  "entityTableName": "card_group",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "infinite-scroll"
+}

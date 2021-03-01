@@ -1,0 +1,10 @@
+{
+  "gatewayApp": {
+    "gameState": {
+      "null": "",
+      "STARTING": "STARTING",
+      "RUNNING": "RUNNING",
+      "FINISHED": "FINISHED"
+    }
+  }
+}

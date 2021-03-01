@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="game">
+            <h2><span jhiTranslate="gatewayApp.game.detail.title">Game</span> {{ game.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gatewayApp.game.state">State</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'gatewayApp.gameState.' + game.state }}">{{ game.state }}</span>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.game.cardGroup">Card Group</span></dt>
+                <dd>
+                    <div *ngIf="game.cardGroup">
+                        <a [routerLink]="['/card-group', game.cardGroup?.id, 'view']">{{ game.cardGroup?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="gatewayApp.game.player">Player</span></dt>
+                <dd>
+                    <span *ngFor="let player of game.players; let last = last">
+                        <a [routerLink]="['/player', player?.id, 'view']">{{ player.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/game', game.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

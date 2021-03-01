@@ -1,0 +1,23 @@
+{
+  "gatewayApp": {
+    "cardGroup": {
+      "home": {
+        "title": "Card Groups",
+        "createLabel": "Create a new Card Group",
+        "createOrEditLabel": "Create or edit a Card Group",
+        "notFound": "No Card Groups found"
+      },
+      "created": "A new Card Group is created with identifier {{ param }}",
+      "updated": "A Card Group is updated with identifier {{ param }}",
+      "deleted": "A Card Group is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Card Group {{ id }}?"
+      },
+      "detail": {
+        "title": "Card Group"
+      },
+      "name": "Name",
+      "card": "Card"
+    }
+  }
+}
