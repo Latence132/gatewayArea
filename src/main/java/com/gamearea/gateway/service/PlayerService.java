@@ -43,4 +43,12 @@ public interface PlayerService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    /**
+     * Check the "name" player.
+     *
+     * @param name the name of the entity.
+     * @return the player if exist or create ir before
+     */
+    Optional<Player> check(String name);
 }

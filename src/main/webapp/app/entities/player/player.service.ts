@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { SERVER_API_URL } from 'app/app.constants';
+import { IPlayer } from 'app/shared/model/player.model';
+import { createRequestOption } from 'app/shared/util/request-util';
 import { Observable } from 'rxjs';
 
-import { SERVER_API_URL } from 'app/app.constants';
-import { createRequestOption } from 'app/shared/util/request-util';
-import { IPlayer } from 'app/shared/model/player.model';
 
 type EntityResponseType = HttpResponse<IPlayer>;
 type EntityArrayResponseType = HttpResponse<IPlayer[]>;
@@ -13,7 +13,7 @@ type EntityArrayResponseType = HttpResponse<IPlayer[]>;
 export class PlayerService {
   public resourceUrl = SERVER_API_URL + 'api/players';
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient) { }
 
   create(player: IPlayer): Observable<EntityResponseType> {
     return this.http.post<IPlayer>(this.resourceUrl, player, { observe: 'response' });
@@ -34,5 +34,9 @@ export class PlayerService {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  check(name: String): any {
+    return this.http.get<IPlayer>(`${this.resourceUrl}/check/${name}`);
   }
 }

@@ -1,20 +1,21 @@
-import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
-import { Observable, of, EMPTY } from 'rxjs';
-import { flatMap } from 'rxjs/operators';
-
-import { Authority } from 'app/shared/constants/authority.constants';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, Router, Routes } from '@angular/router';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
-import { IGame, Game } from 'app/shared/model/game.model';
-import { GameService } from './game.service';
-import { GameComponent } from './game.component';
+import { Authority } from 'app/shared/constants/authority.constants';
+import { Game, IGame } from 'app/shared/model/game.model';
+import { EMPTY, Observable, of } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
 import { GameDetailComponent } from './game-detail.component';
 import { GameUpdateComponent } from './game-update.component';
+import { GameWelcomeComponent } from './game-welcome/game-welcome.component';
+import { GameComponent } from './game.component';
+import { GameService } from './game.service';
+
 
 @Injectable({ providedIn: 'root' })
 export class GameResolve implements Resolve<IGame> {
-  constructor(private service: GameService, private router: Router) {}
+  constructor(private service: GameService, private router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<IGame> | Observable<never> {
     const id = route.params['id'];
@@ -37,45 +38,52 @@ export class GameResolve implements Resolve<IGame> {
 export const gameRoute: Routes = [
   {
     path: '',
+    component: GameWelcomeComponent,
+    data: {
+      pageTitle: 'gatewayApp.game.home.title'
+    }
+  },
+  {
+    path: 'admin',
     component: GameComponent,
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'gatewayApp.game.home.title',
     },
     canActivate: [UserRouteAccessService],
   },
   {
-    path: ':id/view',
+    path: 'admin/:id/view',
     component: GameDetailComponent,
     resolve: {
       game: GameResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'gatewayApp.game.home.title',
     },
     canActivate: [UserRouteAccessService],
   },
   {
-    path: 'new',
+    path: 'admin/new',
     component: GameUpdateComponent,
     resolve: {
       game: GameResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'gatewayApp.game.home.title',
     },
     canActivate: [UserRouteAccessService],
   },
   {
-    path: ':id/edit',
+    path: 'admin/:id/edit',
     component: GameUpdateComponent,
     resolve: {
       game: GameResolve,
     },
     data: {
-      authorities: [Authority.USER],
+      authorities: [Authority.ADMIN],
       pageTitle: 'gatewayApp.game.home.title',
     },
     canActivate: [UserRouteAccessService],

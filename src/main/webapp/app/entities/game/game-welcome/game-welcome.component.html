@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-game-heading" jhiTranslate="gatewayApp.game.home.createLabel">Create</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.game.player" for="playerNameId">Player name</label>
+
+                    <input type="text" class="form-control" name="playerUser" id="playerNameId" formControlName="playerUser" />
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.game.cardGroup"
+                        for="field_cardGroup">Card Group</label>
+                    <select class="form-control" id="field_cardGroup" name="cardGroup" formControlName="cardGroup">
+                        <option [ngValue]="null"></option>
+                        <option
+                            [ngValue]="cardGroupOption.id === editForm.get('cardGroup')!.value?.id ? editForm.get('cardGroup')!.value : cardGroupOption"
+                            *ngFor="let cardGroupOption of cardgroups; trackBy: trackById">{{ cardGroupOption.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="gatewayApp.game.player" for="field_players">Player</label>
+                    <select class="form-control" id="field_players" multiple name="players" formControlName="players">
+                        <option [ngValue]="getSelected(editForm.get('players')!.value, playerOption)"
+                            *ngFor="let playerOption of players; trackBy: trackById">{{ playerOption.name }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                    class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="gatewayApp.game.welcome.start">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>

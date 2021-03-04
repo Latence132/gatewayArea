@@ -79,7 +79,8 @@ public class Player implements Serializable {
     public void setGames(Set<Game> games) {
         this.games = games;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
+    // setters here
 
     @Override
     public boolean equals(Object o) {
@@ -100,9 +101,13 @@ public class Player implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "Player{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            "}";
+        return "Player{" + "id=" + getId() + ", name='" + getName() + "'" + "}";
+    }
+
+    public Player() {
+    }
+
+    public Player(String name) {
+        this.name = name;
     }
 }

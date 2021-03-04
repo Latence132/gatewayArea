@@ -18,7 +18,10 @@
       },
       "state": "State",
       "cardGroup": "Card Group",
-      "player": "Player"
+      "player": "Joueur",
+      "welcome": {
+        "start": "Jouer"
+      }
     }
   }
 }

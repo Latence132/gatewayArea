@@ -41,7 +41,6 @@ public class PlayerServiceImpl implements PlayerService {
         return playerRepository.findAll(pageable);
     }
 
-
     @Override
     @Transactional(readOnly = true)
     public Optional<Player> findOne(Long id) {
@@ -53,5 +52,13 @@ public class PlayerServiceImpl implements PlayerService {
     public void delete(Long id) {
         log.debug("Request to delete Player : {}", id);
         playerRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Player> check(String name) {
+        log.debug("Request to check Player : {}", name);
+        Optional<Player> player = playerRepository.findByName(name);
+        return player;
+ 
     }
 }
