@@ -65,7 +65,6 @@ public class PlayerResource {
                 .body(result);
     }
 
-
     /**
      * {@code PUT  /players} : Updates an existing player.
      *
@@ -127,8 +126,8 @@ public class PlayerResource {
      * {@code GET  /players/:id} : get the "id" player.
      *
      * @param id the id of the player to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with bodygr
-     *         the player, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with
+     *         bodygr the player, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/players/{id}")
     public ResponseEntity<Player> getPlayer(@PathVariable Long id) {
@@ -167,6 +166,4 @@ public class PlayerResource {
         boolean payerIsPresent = player.isPresent();
         return player.isPresent() ? player.get() : createPlayerAndURI(name);
     }
-}
-
 }
