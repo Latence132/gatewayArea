@@ -65,6 +65,25 @@ public class PlayerResource {
                 .body(result);
     }
 
+
+    /**
+     * {@code PUT  /players} : Updates an existing player.
+     *
+     * @param name the player to create.
+     * @return the player and create the URI.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    public Player createPlayerAndURI(String name) throws URISyntaxException {
+        log.debug("REST request to save Player by name: {}", name);
+        Player player = new Player(name);
+        if (player.getId() != null) {
+            throw new BadRequestAlertException("A new player cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        Player result = playerService.save(player);
+        ResponseEntity.created(new URI("/api/players/" + result.getId()));
+        return result;
+    }
+
     /**
      * {@code PUT  /players} : Updates an existing player.
      *
@@ -99,8 +118,6 @@ public class PlayerResource {
     public ResponseEntity<List<Player>> getAllPlayers(Pageable pageable) {
         log.debug("REST request to get a page of Players !");
         Page<Player> page = playerService.findAll(pageable);
-
-        Optional<Player> player = playerService.check("name");
         HttpHeaders headers = PaginationUtil
                 .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -110,7 +127,7 @@ public class PlayerResource {
      * {@code GET  /players/:id} : get the "id" player.
      *
      * @param id the id of the player to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with bodygr
      *         the player, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/players/{id}")
@@ -144,15 +161,12 @@ public class PlayerResource {
      * @throws URISyntaxException
      */
     @GetMapping("/players/check/{name}")
-    public Player checkPlayer(@PathVariable String name) {
+    public Player checkPlayer(@PathVariable String name) throws URISyntaxException {
         log.debug("REST request to check Player : {}", name);
         Optional<Player> player = playerService.check(name);
-        return player.isPresent() ? player.get() : new Player(name);
+        boolean payerIsPresent = player.isPresent();
+        return player.isPresent() ? player.get() : createPlayerAndURI(name);
     }
+}
 
-    @GetMapping("/players/check")
-    public void checkPlayer() {
-        log.debug("Call to mapping GetMapping('/players/check')");
-
-    }
 }

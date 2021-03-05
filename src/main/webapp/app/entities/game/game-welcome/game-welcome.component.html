@@ -6,11 +6,13 @@
             <div>
                 <jhi-alert-error></jhi-alert-error>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gatewayApp.game.player" for="playerNameId">Player name</label>
+                    <label class="form-control-label" jhiTranslate="gatewayApp.game.player" for="playerNameId">Player
+                        name</label>
 
-                    <input type="text" class="form-control" name="playerUser" id="playerNameId" formControlName="playerUser" />
+                    <input type="text" class="form-control" name="playerUser" id="playerNameId"
+                        formControlName="playerUser" />
                 </div>
-                
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="gatewayApp.game.cardGroup"
                         for="field_cardGroup">Card Group</label>
@@ -34,8 +36,7 @@
 
             <div>
 
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
-                    class="btn btn-primary">
+                <button type="submit" id="save-entity" class="btn btn-primary">
                     <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="gatewayApp.game.welcome.start">Save</span>
                 </button>
             </div>

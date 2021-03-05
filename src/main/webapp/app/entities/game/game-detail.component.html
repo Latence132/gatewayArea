@@ -15,26 +15,22 @@
                 <dt><span jhiTranslate="gatewayApp.game.cardGroup">Card Group</span></dt>
                 <dd>
                     <div *ngIf="game.cardGroup">
-                        <a [routerLink]="['/card-group', game.cardGroup?.id, 'view']">{{ game.cardGroup?.id }}</a>
+                        <a [routerLink]="['/card-group', game.cardGroup?.id, 'view']">{{ game.cardGroup?.name }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="gatewayApp.game.player">Player</span></dt>
                 <dd>
                     <span *ngFor="let player of game.players; let last = last">
-                        <a [routerLink]="['/player', player?.id, 'view']">{{ player.id }}</a>{{ last ? '' : ', ' }}
+                        <a [routerLink]="['/player', player?.id, 'view']">{{ player.name }}</a>{{ last ? '' : ', ' }}
                     </span>
                 </dd>
             </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
+            <button type="submit" (click)="previousState()" class="btn btn-info">
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
-            <button type="button"
-                    [routerLink]="['/game', game.id, 'edit']"
-                    class="btn btn-primary">
+            <button type="button" [routerLink]="['/game/admin', game.id, 'edit']" class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>

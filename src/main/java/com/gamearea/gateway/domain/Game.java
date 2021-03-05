@@ -37,9 +37,7 @@ public class Game implements Serializable {
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JoinTable(name = "game_player",
-               joinColumns = @JoinColumn(name = "game_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "player_id", referencedColumnName = "id"))
+    @JoinTable(name = "game_player", joinColumns = @JoinColumn(name = "game_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "player_id", referencedColumnName = "id"))
     private Set<Player> players = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -101,7 +99,8 @@ public class Game implements Serializable {
     public void setPlayers(Set<Player> players) {
         this.players = players;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
+    // setters here
 
     @Override
     public boolean equals(Object o) {
@@ -122,9 +121,6 @@ public class Game implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "Game{" +
-            "id=" + getId() +
-            ", state='" + getState() + "'" +
-            "}";
+        return "Game{" + "id=" + getId() + ", state='" + getState() + "'" + "}";
     }
 }

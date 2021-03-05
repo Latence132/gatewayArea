@@ -1,5 +1,5 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CardGroupService } from 'app/entities/card-group/card-group.service';
@@ -7,7 +7,8 @@ import { PlayerService } from 'app/entities/player/player.service';
 import { ICardGroup } from 'app/shared/model/card-group.model';
 import { Game, IGame } from 'app/shared/model/game.model';
 import { IPlayer, Player } from 'app/shared/model/player.model';
-import { Observable } from 'rxjs/internal/Observable';
+import { gameState } from 'app/shared/model/enumerations/game-state.model';
+import { Subscription } from 'rxjs';
 import { GameService } from '../game.service';
 
 type SelectableEntity = ICardGroup | IPlayer;
@@ -17,11 +18,12 @@ type SelectableEntity = ICardGroup | IPlayer;
   templateUrl: './game-welcome.component.html',
   styleUrls: ['./game-welcome.component.scss']
 })
-export class GameWelcomeComponent implements OnInit {
+export class GameWelcomeComponent implements OnInit, OnDestroy {
   isSaving = false;
   cardgroups: ICardGroup[] = [];
   players: IPlayer[] = [];
-
+  playerNameSub: Subscription = new Subscription();
+  subscribeToSaveResponse: Subscription = new Subscription();
 
 
   editForm = this.fb.group({
@@ -41,7 +43,7 @@ export class GameWelcomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ game }) => {
+    this.activatedRoute.data.subscribe(() => {
 
       this.cardGroupService.query().subscribe((res: HttpResponse<ICardGroup[]>) => (this.cardgroups = res.body || []));
 
@@ -54,39 +56,41 @@ export class GameWelcomeComponent implements OnInit {
   }
 
   save(): void {
-    this.isSaving = true;
+    /* eslint-disable no-console */
     const playerName: string = this.editForm.get(['playerUser'])!.value;
-    console.log("his.playerService.check(playerName);");
-    const userPlayer = this.playerService.check(playerName);
-    const game = this.createFromForm(userPlayer);
-    if (game.id === undefined || game.id === null) {
-      // this.subscribeToSaveResponse(this.gameService.create(game));
-    } else {
-      // this.subscribeToSaveResponse(this.gameService.update(game));
-    }
+    this.playerNameSub = this.playerService.check(playerName).subscribe(
+      (res) => {
+        const userPlayer = new Player(res.id, res.name, res.games)
+        const game = this.createFromForm(userPlayer);
+        this.subscribeToSaveResponse = this.gameService.create(game).subscribe(
+          () => console.log(`game created with ${playerName}`)
+        );
+      },
+      (error) => console.log(error)
+    );
+    /* eslint-enable no-console */
   }
 
-  private createFromForm(userPlayer: any): IGame {
-
+  private createFromForm(userPlayer: Player): IGame {
     return {
       ...new Game(),
       id: this.editForm.get(['id'])!.value,
-      state: this.editForm.get(['state'])!.value,
+      state: gameState.STARTING,
       cardGroup: this.editForm.get(['cardGroup'])!.value,
       players: [userPlayer, ...this.editForm.get(['players'])!.value]
     };
   }
 
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<IGame>>): void {
-    result.subscribe(
-      () => this.onSaveSuccess(),
-      () => this.onSaveError()
-    );
-  }
+  // protected subscribeToSaveResponse(result: Observable<HttpResponse<IGame>>): void {
+  //   result.subscribe(
+  //     () => this.onSaveSuccess(),
+  //     () => this.onSaveError()
+  //   );
+  // }
 
   protected onSaveSuccess(): void {
-    this.isSaving = false;
-    this.previousState();
+    // this.isSaving = false;
+    // this.previousState();
   }
 
   protected onSaveError(): void {
@@ -106,6 +110,11 @@ export class GameWelcomeComponent implements OnInit {
       }
     }
     return option;
+  }
+
+  ngOnDestroy(): void {
+    this.playerNameSub.unsubscribe();
+    this.subscribeToSaveResponse.unsubscribe();
   }
 
 }

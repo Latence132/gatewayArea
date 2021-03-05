@@ -36,7 +36,7 @@ export class PlayerService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  check(name: String): any {
+  check(name: String): Observable<IPlayer> {
     return this.http.get<IPlayer>(`${this.resourceUrl}/check/${name}`);
   }
 }
