@@ -9,6 +9,7 @@ import { flatMap } from 'rxjs/operators';
 import { GameDetailComponent } from './game-detail.component';
 import { GameUpdateComponent } from './game-update.component';
 import { GameWelcomeComponent } from './game-welcome/game-welcome.component';
+import { GamePlayComponent } from './game-play/game-play.component';
 import { GameComponent } from './game.component';
 import { GameService } from './game.service';
 
@@ -39,6 +40,13 @@ export const gameRoute: Routes = [
   {
     path: '',
     component: GameWelcomeComponent,
+    data: {
+      pageTitle: 'gatewayApp.game.home.title'
+    }
+  },
+  {
+    path: 'play',
+    component: GamePlayComponent,
     data: {
       pageTitle: 'gatewayApp.game.home.title'
     }

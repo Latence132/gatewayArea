@@ -8,10 +8,11 @@ import { GameUpdateComponent } from './game-update.component';
 import { GameDeleteDialogComponent } from './game-delete-dialog.component';
 import { gameRoute } from './game.route';
 import { GameWelcomeComponent } from './game-welcome/game-welcome.component';
+import { GamePlayComponent } from './game-play/game-play.component';
 
 @NgModule({
   imports: [GatewaySharedModule, RouterModule.forChild(gameRoute)],
-  declarations: [GameComponent, GameDetailComponent, GameUpdateComponent, GameDeleteDialogComponent, GameWelcomeComponent],
+  declarations: [GameComponent, GameDetailComponent, GameUpdateComponent, GameDeleteDialogComponent, GameWelcomeComponent, GamePlayComponent],
   entryComponents: [GameDeleteDialogComponent],
 })
 export class GatewayGameModule {}

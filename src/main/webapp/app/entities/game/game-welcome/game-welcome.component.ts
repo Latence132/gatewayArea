@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CardGroupService } from 'app/entities/card-group/card-group.service';
@@ -24,6 +25,17 @@ export class GameWelcomeComponent implements OnInit, OnDestroy {
   players: IPlayer[] = [];
   playerNameSub: Subscription = new Subscription();
   subscribeToSaveResponse: Subscription = new Subscription();
+  createdGame: NavigationExtras = {
+    state: {
+      game: {
+        gameId: null,
+        gameState: null,
+        cardGroup: null,
+        players: null
+      }
+    }
+  }
+
 
 
   editForm = this.fb.group({
@@ -39,6 +51,7 @@ export class GameWelcomeComponent implements OnInit, OnDestroy {
     protected cardGroupService: CardGroupService,
     protected playerService: PlayerService,
     protected activatedRoute: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder
   ) { }
 
@@ -63,7 +76,12 @@ export class GameWelcomeComponent implements OnInit, OnDestroy {
         const userPlayer = new Player(res.id, res.name, res.games)
         const game = this.createFromForm(userPlayer);
         this.subscribeToSaveResponse = this.gameService.create(game).subscribe(
-          () => console.log(`game created with ${playerName}`)
+          () => {
+            console.log(`game created with ${playerName}`);
+            this.createdGame.state = game;
+            this.router.navigate(['game/play'], this.createdGame);
+          }
+
         );
       },
       (error) => console.log(error)
