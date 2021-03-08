@@ -74,6 +74,7 @@ class CardGatlingTest extends Simulation {
                 "id":null
                 , "value":"SAMPLE_TEXT"
                 , "symbol":"SAMPLE_TEXT"
+                , "imageFront":null
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_card_url"))).exitHereIfFailed

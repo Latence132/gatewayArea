@@ -2,6 +2,7 @@ import { browser, ExpectedConditions as ec, promise } from 'protractor';
 import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
 
 import { CardComponentsPage, CardDeleteDialog, CardUpdatePage } from './card.page-object';
+import * as path from 'path';
 
 const expect = chai.expect;
 
@@ -11,6 +12,9 @@ describe('Card e2e test', () => {
   let cardComponentsPage: CardComponentsPage;
   let cardUpdatePage: CardUpdatePage;
   let cardDeleteDialog: CardDeleteDialog;
+  const fileNameToUpload = 'logo-jhipster.png';
+  const fileToUpload = '../../../../../../src/main/webapp/content/images/' + fileNameToUpload;
+  const absolutePath = path.resolve(__dirname, fileToUpload);
 
   before(async () => {
     await browser.get('/');
@@ -40,10 +44,18 @@ describe('Card e2e test', () => {
 
     await cardComponentsPage.clickOnCreateButton();
 
-    await promise.all([cardUpdatePage.setValueInput('value'), cardUpdatePage.setSymbolInput('symbol')]);
+    await promise.all([
+      cardUpdatePage.setValueInput('value'),
+      cardUpdatePage.setSymbolInput('symbol'),
+      cardUpdatePage.setImageFrontInput(absolutePath),
+    ]);
 
     expect(await cardUpdatePage.getValueInput()).to.eq('value', 'Expected Value value to be equals to value');
     expect(await cardUpdatePage.getSymbolInput()).to.eq('symbol', 'Expected Symbol value to be equals to symbol');
+    expect(await cardUpdatePage.getImageFrontInput()).to.endsWith(
+      fileNameToUpload,
+      'Expected ImageFront value to be end with ' + fileNameToUpload
+    );
 
     await cardUpdatePage.save();
     expect(await cardUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;

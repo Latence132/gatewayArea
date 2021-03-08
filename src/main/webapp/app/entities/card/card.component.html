@@ -25,6 +25,7 @@
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="value"><span jhiTranslate="gatewayApp.card.value">Value</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="symbol"><span jhiTranslate="gatewayApp.card.symbol">Symbol</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="imageFront"><span jhiTranslate="gatewayApp.card.imageFront">Image Front</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -33,6 +34,12 @@
                     <td><a [routerLink]="['/card', card.id, 'view']">{{ card.id }}</a></td>
                     <td>{{ card.value }}</td>
                     <td>{{ card.symbol }}</td>
+                    <td>
+                        <a *ngIf="card.imageFront" (click)="openFile(card.imageFrontContentType, card.imageFront)">
+                            <img [src]="'data:' + card.imageFrontContentType + ';base64,' + card.imageFront" style="max-height: 30px;" alt="card image"/>
+                        </a>
+                        <span *ngIf="card.imageFront">{{ card.imageFrontContentType }}, {{ byteSize(card.imageFront) }}</span>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

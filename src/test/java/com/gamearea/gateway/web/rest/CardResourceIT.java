@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 import javax.persistence.EntityManager;
 import java.util.List;
 
@@ -35,6 +36,11 @@ public class CardResourceIT {
 
     private static final String DEFAULT_SYMBOL = "AAAAAAAAAA";
     private static final String UPDATED_SYMBOL = "BBBBBBBBBB";
+
+    private static final byte[] DEFAULT_IMAGE_FRONT = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_IMAGE_FRONT = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_IMAGE_FRONT_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_IMAGE_FRONT_CONTENT_TYPE = "image/png";
 
     @Autowired
     private CardRepository cardRepository;
@@ -59,7 +65,9 @@ public class CardResourceIT {
     public static Card createEntity(EntityManager em) {
         Card card = new Card()
             .value(DEFAULT_VALUE)
-            .symbol(DEFAULT_SYMBOL);
+            .symbol(DEFAULT_SYMBOL)
+            .imageFront(DEFAULT_IMAGE_FRONT)
+            .imageFrontContentType(DEFAULT_IMAGE_FRONT_CONTENT_TYPE);
         return card;
     }
     /**
@@ -71,7 +79,9 @@ public class CardResourceIT {
     public static Card createUpdatedEntity(EntityManager em) {
         Card card = new Card()
             .value(UPDATED_VALUE)
-            .symbol(UPDATED_SYMBOL);
+            .symbol(UPDATED_SYMBOL)
+            .imageFront(UPDATED_IMAGE_FRONT)
+            .imageFrontContentType(UPDATED_IMAGE_FRONT_CONTENT_TYPE);
         return card;
     }
 
@@ -96,6 +106,8 @@ public class CardResourceIT {
         Card testCard = cardList.get(cardList.size() - 1);
         assertThat(testCard.getValue()).isEqualTo(DEFAULT_VALUE);
         assertThat(testCard.getSymbol()).isEqualTo(DEFAULT_SYMBOL);
+        assertThat(testCard.getImageFront()).isEqualTo(DEFAULT_IMAGE_FRONT);
+        assertThat(testCard.getImageFrontContentType()).isEqualTo(DEFAULT_IMAGE_FRONT_CONTENT_TYPE);
     }
 
     @Test
@@ -130,7 +142,9 @@ public class CardResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(card.getId().intValue())))
             .andExpect(jsonPath("$.[*].value").value(hasItem(DEFAULT_VALUE)))
-            .andExpect(jsonPath("$.[*].symbol").value(hasItem(DEFAULT_SYMBOL)));
+            .andExpect(jsonPath("$.[*].symbol").value(hasItem(DEFAULT_SYMBOL)))
+            .andExpect(jsonPath("$.[*].imageFrontContentType").value(hasItem(DEFAULT_IMAGE_FRONT_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].imageFront").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE_FRONT))));
     }
     
     @Test
@@ -145,7 +159,9 @@ public class CardResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(card.getId().intValue()))
             .andExpect(jsonPath("$.value").value(DEFAULT_VALUE))
-            .andExpect(jsonPath("$.symbol").value(DEFAULT_SYMBOL));
+            .andExpect(jsonPath("$.symbol").value(DEFAULT_SYMBOL))
+            .andExpect(jsonPath("$.imageFrontContentType").value(DEFAULT_IMAGE_FRONT_CONTENT_TYPE))
+            .andExpect(jsonPath("$.imageFront").value(Base64Utils.encodeToString(DEFAULT_IMAGE_FRONT)));
     }
     @Test
     @Transactional
@@ -169,7 +185,9 @@ public class CardResourceIT {
         em.detach(updatedCard);
         updatedCard
             .value(UPDATED_VALUE)
-            .symbol(UPDATED_SYMBOL);
+            .symbol(UPDATED_SYMBOL)
+            .imageFront(UPDATED_IMAGE_FRONT)
+            .imageFrontContentType(UPDATED_IMAGE_FRONT_CONTENT_TYPE);
 
         restCardMockMvc.perform(put("/api/cards")
             .contentType(MediaType.APPLICATION_JSON)
@@ -182,6 +200,8 @@ public class CardResourceIT {
         Card testCard = cardList.get(cardList.size() - 1);
         assertThat(testCard.getValue()).isEqualTo(UPDATED_VALUE);
         assertThat(testCard.getSymbol()).isEqualTo(UPDATED_SYMBOL);
+        assertThat(testCard.getImageFront()).isEqualTo(UPDATED_IMAGE_FRONT);
+        assertThat(testCard.getImageFrontContentType()).isEqualTo(UPDATED_IMAGE_FRONT_CONTENT_TYPE);
     }
 
     @Test

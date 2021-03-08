@@ -22,6 +22,24 @@
                     <input type="text" class="form-control" name="symbol" id="field_symbol"
                            formControlName="symbol"/>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gatewayApp.card.imageFront" for="field_imageFront">Image Front</label>
+                    <div>
+                        <img [src]="'data:' + editForm.get('imageFrontContentType')!.value + ';base64,' + editForm.get('imageFront')!.value" style="max-height: 100px;" *ngIf="editForm.get('imageFront')!.value" alt="card image"/>
+                        <div *ngIf="editForm.get('imageFront')!.value" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{ editForm.get('imageFrontContentType')!.value }}, {{ byteSize(editForm.get('imageFront')!.value) }}</span>
+                            <button type="button" (click)="clearInputImage('imageFront', 'imageFrontContentType', 'file_imageFront')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_imageFront" (change)="setFileData($event, 'imageFront', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="imageFront" id="field_imageFront"
+                           formControlName="imageFront"/>
+                    <input type="hidden" class="form-control" name="imageFrontContentType" id="field_imageFrontContentType"
+                           formControlName="imageFrontContentType" />
+                </div>
             </div>
 
             <div>

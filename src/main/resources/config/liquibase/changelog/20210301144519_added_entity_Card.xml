@@ -21,6 +21,12 @@
             <column name="symbol" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="image_front" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="image_front_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
@@ -40,12 +46,14 @@
     -->
     <changeSet id="20210301144519-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/card.csv"
+                  file="config/liquibase/data/card.csv"
                   separator=";"
                   tableName="card">
             <column name="id" type="numeric"/>
             <column name="value" type="string"/>
             <column name="symbol" type="string"/>
+            <column name="image_front" type="blob"/>
+            <column name="image_front_content_type" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

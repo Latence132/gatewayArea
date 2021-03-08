@@ -76,8 +76,10 @@ export class GameWelcomeComponent implements OnInit, OnDestroy {
         const userPlayer = new Player(res.id, res.name, res.games)
         const game = this.createFromForm(userPlayer);
         this.subscribeToSaveResponse = this.gameService.create(game).subscribe(
-          () => {
+          (res2) => {
             console.log(`game created with ${playerName}`);
+            console.log(`res2 => ${res2}`);
+            game.id = res2.body!.id;
             this.createdGame.state = game;
             this.router.navigate(['game/play'], this.createdGame);
           }

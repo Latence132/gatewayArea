@@ -16,17 +16,23 @@
                 <dd>
                     <span>{{ card.symbol }}</span>
                 </dd>
+                <dt><span jhiTranslate="gatewayApp.card.imageFront">Image Front</span></dt>
+                <dd>
+                    <div *ngIf="card.imageFront">
+                        <a (click)="openFile(card.imageFrontContentType, card.imageFront)">
+                            <img [src]="'data:' + card.imageFrontContentType + ';base64,' + card.imageFront"
+                                style="max-width: 100%;" alt="card image" />
+                        </a>
+                        {{ card.imageFrontContentType }}, {{ byteSize(card.imageFront) }}
+                    </div>
+                </dd>
             </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
+            <button type="submit" (click)="previousState()" class="btn btn-info">
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
-            <button type="button"
-                    [routerLink]="['/card', card.id, 'edit']"
-                    class="btn btn-primary">
+            <button type="button" [routerLink]="['/card', card.id, 'edit']" class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>

@@ -31,6 +31,13 @@ public class Card implements Serializable {
     @Column(name = "symbol")
     private String symbol;
 
+    @Lob
+    @Column(name = "image_front")
+    private byte[] imageFront;
+
+    @Column(name = "image_front_content_type")
+    private String imageFrontContentType;
+
     @ManyToMany(mappedBy = "cards")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnore
@@ -69,6 +76,32 @@ public class Card implements Serializable {
 
     public void setSymbol(String symbol) {
         this.symbol = symbol;
+    }
+
+    public byte[] getImageFront() {
+        return imageFront;
+    }
+
+    public Card imageFront(byte[] imageFront) {
+        this.imageFront = imageFront;
+        return this;
+    }
+
+    public void setImageFront(byte[] imageFront) {
+        this.imageFront = imageFront;
+    }
+
+    public String getImageFrontContentType() {
+        return imageFrontContentType;
+    }
+
+    public Card imageFrontContentType(String imageFrontContentType) {
+        this.imageFrontContentType = imageFrontContentType;
+        return this;
+    }
+
+    public void setImageFrontContentType(String imageFrontContentType) {
+        this.imageFrontContentType = imageFrontContentType;
     }
 
     public Set<CardGroup> getGroups() {
@@ -120,6 +153,8 @@ public class Card implements Serializable {
             "id=" + getId() +
             ", value='" + getValue() + "'" +
             ", symbol='" + getSymbol() + "'" +
+            ", imageFront='" + getImageFront() + "'" +
+            ", imageFrontContentType='" + getImageFrontContentType() + "'" +
             "}";
     }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { JhiEventManager, JhiParseLinks } from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks, JhiDataUtils } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ICard } from 'app/shared/model/card.model';
@@ -25,6 +25,7 @@ export class CardComponent implements OnInit, OnDestroy {
 
   constructor(
     protected cardService: CardService,
+    protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
     protected parseLinks: JhiParseLinks
@@ -74,6 +75,14 @@ export class CardComponent implements OnInit, OnDestroy {
   trackId(index: number, item: ICard): number {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     return item.id!;
+  }
+
+  byteSize(base64String: string): string {
+    return this.dataUtils.byteSize(base64String);
+  }
+
+  openFile(contentType = '', base64String: string): void {
+    return this.dataUtils.openFile(contentType, base64String);
   }
 
   registerChangeInCards(): void {

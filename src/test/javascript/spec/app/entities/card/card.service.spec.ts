@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(CardService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Card(0, 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Card(0, 'AAAAAAA', 'AAAAAAA', 'image/png', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -56,6 +56,7 @@ describe('Service Tests', () => {
           {
             value: 'BBBBBB',
             symbol: 'BBBBBB',
+            imageFront: 'BBBBBB',
           },
           elemDefault
         );
@@ -74,6 +75,7 @@ describe('Service Tests', () => {
           {
             value: 'BBBBBB',
             symbol: 'BBBBBB',
+            imageFront: 'BBBBBB',
           },
           elemDefault
         );

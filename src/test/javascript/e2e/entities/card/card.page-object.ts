@@ -31,6 +31,7 @@ export class CardUpdatePage {
 
   valueInput = element(by.id('field_value'));
   symbolInput = element(by.id('field_symbol'));
+  imageFrontInput = element(by.id('file_imageFront'));
 
   async getPageTitle(): Promise<string> {
     return this.pageTitle.getAttribute('jhiTranslate');
@@ -50,6 +51,14 @@ export class CardUpdatePage {
 
   async getSymbolInput(): Promise<string> {
     return await this.symbolInput.getAttribute('value');
+  }
+
+  async setImageFrontInput(imageFront: string): Promise<void> {
+    await this.imageFrontInput.sendKeys(imageFront);
+  }
+
+  async getImageFrontInput(): Promise<string> {
+    return await this.imageFrontInput.getAttribute('value');
   }
 
   async save(): Promise<void> {

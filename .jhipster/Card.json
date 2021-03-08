@@ -18,6 +18,11 @@
     {
       "fieldName": "symbol",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "imageFront",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
     }
   ],
   "changelogDate": "20210301144519",
