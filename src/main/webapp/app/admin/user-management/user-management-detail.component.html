@@ -9,9 +9,9 @@
                 <dt><span jhiTranslate="userManagement.login">Login</span></dt>
                 <dd>
                     <span>{{ user.login }}</span>
-                    <boolean [value]="user.activated ? true : false" [textTrue]="'userManagement.activated' | translate"
+                    <jhi-boolean [value]="user.activated ? true : false" [textTrue]="'userManagement.activated' | translate"
                         [textFalse]="'userManagement.deactivated' | translate">
-                    </boolean>
+                    </jhi-boolean>
                 </dd>
 
                 <dt><span jhiTranslate="userManagement.firstName">First Name</span></dt>

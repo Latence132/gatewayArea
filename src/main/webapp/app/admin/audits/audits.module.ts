@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { GatewaySharedModule } from 'app/shared/shared.module';
 
@@ -9,5 +9,6 @@ import { auditsRoute } from './audits.route';
 @NgModule({
   imports: [GatewaySharedModule, RouterModule.forChild([auditsRoute])],
   declarations: [AuditsComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AuditsModule {}
+export class AuditsModule { }

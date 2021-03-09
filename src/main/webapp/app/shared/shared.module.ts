@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { GatewaySharedLibsModule } from './shared-libs.module';
 import { FindLanguageFromKeyPipe } from './language/find-language-from-key.pipe';
 import { AlertComponent } from './alert/alert.component';
@@ -18,5 +18,6 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     LoginModalComponent,
     HasAnyAuthorityDirective,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class GatewaySharedModule {}
+export class GatewaySharedModule { }

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Game } from 'app/shared/model/game.model';
-import { Player } from 'app/shared/model/player.model';
 import { gameState } from 'app/shared/model/enumerations/game-state.model';
-import { Card } from 'app/shared/model/card.model';
+import { Player } from 'app/shared/model/player.model';
+import { ISeat } from 'app/shared/model/seat.model';
+import { ITable } from 'app/shared/model/table.model';
+import { IGame } from 'app/shared/model/game.model';
 
 @Component({
   selector: 'game-play',
@@ -12,7 +13,9 @@ import { Card } from 'app/shared/model/card.model';
 })
 export class GamePlayComponent implements OnInit {
   /* eslint-disable no-console */
-  public game: Game = {};
+  @Input() table: ITable | undefined;
+  public seats: ISeat | undefined;
+  public game: IGame = {};
 
   constructor(private router: Router) {
   }
@@ -21,9 +24,10 @@ export class GamePlayComponent implements OnInit {
     console.log(window.history.state);
     this.game = window.history.state;
     this.game.players?.length;
+    this.game.cardGroup
     this.game.state = gameState.RUNNING;
 
-
+    // eslint-disable-next-line
     this.game.players?.forEach((player) => {
 
     })
