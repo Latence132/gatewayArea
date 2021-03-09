@@ -58,7 +58,10 @@ export class GameWelcomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(() => {
 
-      this.cardGroupService.query().subscribe((res: HttpResponse<ICardGroup[]>) => (this.cardgroups = res.body || []));
+      this.cardGroupService.query().subscribe(
+        (res: HttpResponse<ICardGroup[]>) => {
+          this.cardgroups = res.body || []
+        });
 
       this.playerService.query().subscribe((res: HttpResponse<IPlayer[]>) => (this.players = res.body || []));
     });
@@ -73,7 +76,9 @@ export class GameWelcomeComponent implements OnInit, OnDestroy {
     const playerName: string = this.editForm.get(['playerUser'])!.value;
     this.playerNameSub = this.playerService.check(playerName).subscribe(
       (res) => {
-        const userPlayer = new Player(res.id, res.name, res.games)
+        const userPlayer = new Player(res.id, res.name, res.games);
+        // this.editForm.get(['cardGroup'])!.value
+
         const game = this.createFromForm(userPlayer);
         this.subscribeToSaveResponse = this.gameService.create(game).subscribe(
           (res2) => {

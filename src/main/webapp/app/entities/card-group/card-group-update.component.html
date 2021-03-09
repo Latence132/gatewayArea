@@ -22,7 +22,7 @@
                     <label jhiTranslate="gatewayApp.cardGroup.card" for="field_cards">Card</label>
                     <select class="form-control" id="field_cards" multiple name="cards" formControlName="cards">
                         <option [ngValue]="getSelected(editForm.get('cards')!.value, cardOption)"
-                            *ngFor="let cardOption of cards; trackBy: trackById">{{ cardOption.id }}</option>
+                            *ngFor="let cardOption of cards; trackBy: trackById">{{ cardOption.value }} {{ cardOption.symbol }}</option>
                     </select>
                 </div>
             </div>

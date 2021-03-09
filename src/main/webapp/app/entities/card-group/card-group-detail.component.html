@@ -15,7 +15,8 @@
                 <dt><span jhiTranslate="gatewayApp.cardGroup.card">Card</span></dt>
                 <dd>
                     <span *ngFor="let card of cardGroup.cards; let last = last">
-                        <a [routerLink]="['/card', card?.id, 'view']">{{ card.id }}</a>{{ last ? '' : ', ' }}
+                        <a [routerLink]="['/card', card?.id, 'view']">{{ card.value }} {{ card.symbol }}</a>{{ last ? ''
+                        : ', ' }}
                     </span>
                 </dd>
             </dl>

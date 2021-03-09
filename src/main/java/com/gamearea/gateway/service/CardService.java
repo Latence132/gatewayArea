@@ -1,11 +1,12 @@
 package com.gamearea.gateway.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.gamearea.gateway.domain.Card;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.Optional;
 
 /**
  * Service Interface for managing {@link Card}.
@@ -28,6 +29,12 @@ public interface CardService {
      */
     Page<Card> findAll(Pageable pageable);
 
+    /**
+     * Get all the cards.
+     *
+     * @return the list of cards.
+     */
+    List<Card> findAll();
 
     /**
      * Get the "id" card.

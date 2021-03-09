@@ -35,7 +35,7 @@ export class CardGroupUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ cardGroup }) => {
       this.updateForm(cardGroup);
 
-      this.cardService.query().subscribe((res: HttpResponse<ICard[]>) => (this.cards = res.body || []));
+      this.cardService.findAll().subscribe((res: HttpResponse<ICard[]>) => (this.cards = res.body || []));
     });
   }
 

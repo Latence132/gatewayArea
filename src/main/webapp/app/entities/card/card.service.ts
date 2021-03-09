@@ -13,7 +13,7 @@ type EntityArrayResponseType = HttpResponse<ICard[]>;
 export class CardService {
   public resourceUrl = SERVER_API_URL + 'api/cards';
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient) { }
 
   create(card: ICard): Observable<EntityResponseType> {
     return this.http.post<ICard>(this.resourceUrl, card, { observe: 'response' });
@@ -26,6 +26,11 @@ export class CardService {
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<ICard>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
+
+  findAll(): Observable<EntityArrayResponseType> {
+    return this.http.get<ICard[]>(`${this.resourceUrl}/all`, { observe: 'response' });
+  }
+
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);

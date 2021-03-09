@@ -1,8 +1,11 @@
 package com.gamearea.gateway.repository;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.gamearea.gateway.domain.Card;
 
-import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -11,4 +14,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface CardRepository extends JpaRepository<Card, Long> {
+
+    @Override
+    List<Card> findAll();
 }
