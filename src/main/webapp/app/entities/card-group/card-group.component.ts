@@ -11,7 +11,7 @@ import { CardGroupService } from './card-group.service';
 import { CardGroupDeleteDialogComponent } from './card-group-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-card-group',
+  selector: 'card-group',
   templateUrl: './card-group.component.html',
 })
 export class CardGroupComponent implements OnInit, OnDestroy {

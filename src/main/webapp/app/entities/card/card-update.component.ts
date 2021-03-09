@@ -11,7 +11,7 @@ import { CardService } from './card.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 
 @Component({
-  selector: 'jhi-card-update',
+  selector: 'card-update',
   templateUrl: './card-update.component.html',
 })
 export class CardUpdateComponent implements OnInit {
@@ -32,7 +32,7 @@ export class CardUpdateComponent implements OnInit {
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ card }) => {

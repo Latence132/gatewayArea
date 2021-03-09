@@ -7,7 +7,7 @@ import { Account } from 'app/core/user/account.model';
 import { LANGUAGES } from 'app/core/language/language.constants';
 
 @Component({
-  selector: 'jhi-settings',
+  selector: 'settings',
   templateUrl: './settings.component.html',
 })
 export class SettingsComponent implements OnInit {
@@ -21,7 +21,7 @@ export class SettingsComponent implements OnInit {
     langKey: [undefined],
   });
 
-  constructor(private accountService: AccountService, private fb: FormBuilder, private languageService: JhiLanguageService) {}
+  constructor(private accountService: AccountService, private fb: FormBuilder, private languageService: JhiLanguageService) { }
 
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => {

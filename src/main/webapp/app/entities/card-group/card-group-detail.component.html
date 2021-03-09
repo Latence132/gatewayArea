@@ -5,7 +5,7 @@
 
             <hr>
 
-            <jhi-alert-error></jhi-alert-error>
+            <alert-error></alert-error>
 
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="gatewayApp.cardGroup.name">Name</span></dt>
@@ -20,15 +20,11 @@
                 </dd>
             </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
+            <button type="submit" (click)="previousState()" class="btn btn-info">
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
             </button>
 
-            <button type="button"
-                    [routerLink]="['/card-group', cardGroup.id, 'edit']"
-                    class="btn btn-primary">
+            <button type="button" [routerLink]="['/card-group', cardGroup.id, 'edit']" class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>

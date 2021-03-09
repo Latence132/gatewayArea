@@ -15,7 +15,7 @@ import { GameService } from '../game.service';
 type SelectableEntity = ICardGroup | IPlayer;
 
 @Component({
-  selector: 'jhi-game-welcome',
+  selector: 'game-welcome',
   templateUrl: './game-welcome.component.html',
   styleUrls: ['./game-welcome.component.scss']
 })

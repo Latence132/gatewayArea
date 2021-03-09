@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { AlertError } from './alert-error.model';
 
 @Component({
-  selector: 'jhi-alert-error',
+  selector: 'alert-error',
   template: ` <div class="alerts" role="alert">
     <div *ngFor="let alert of alerts" [ngClass]="setClasses(alert)">
       <ngb-alert *ngIf="alert && alert.type && alert.msg" [type]="alert.type" (close)="close(alert)">
@@ -83,7 +83,7 @@ export class AlertErrorComponent implements OnDestroy {
   }
 
   setClasses(alert: JhiAlert): { [key: string]: boolean } {
-    const classes = { 'jhi-toast': Boolean(alert.toast) };
+    const classes = { 'toast': Boolean(alert.toast) };
     if (alert.position) {
       return { ...classes, [alert.position]: true };
     }

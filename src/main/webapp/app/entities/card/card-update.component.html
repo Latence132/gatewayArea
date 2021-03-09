@@ -1,10 +1,10 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-card-heading" jhiTranslate="gatewayApp.card.home.createOrEditLabel">Create or edit a Card</h2>
+            <h2 id="card-heading" jhiTranslate="gatewayApp.card.home.createOrEditLabel">Create or edit a Card</h2>
 
             <div>
-                <jhi-alert-error></jhi-alert-error>
+                <alert-error></alert-error>
 
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
@@ -12,33 +12,39 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gatewayApp.card.value" for="field_value">Value</label>
-                    <input type="text" class="form-control" name="value" id="field_value"
-                           formControlName="value"/>
+                    <label class="form-control-label" jhiTranslate="gatewayApp.card.value"
+                        for="field_value">Value</label>
+                    <input type="text" class="form-control" name="value" id="field_value" formControlName="value" />
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gatewayApp.card.symbol" for="field_symbol">Symbol</label>
-                    <input type="text" class="form-control" name="symbol" id="field_symbol"
-                           formControlName="symbol"/>
+                    <label class="form-control-label" jhiTranslate="gatewayApp.card.symbol"
+                        for="field_symbol">Symbol</label>
+                    <input type="text" class="form-control" name="symbol" id="field_symbol" formControlName="symbol" />
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gatewayApp.card.imageFront" for="field_imageFront">Image Front</label>
+                    <label class="form-control-label" jhiTranslate="gatewayApp.card.imageFront"
+                        for="field_imageFront">Image Front</label>
                     <div>
-                        <img [src]="'data:' + editForm.get('imageFrontContentType')!.value + ';base64,' + editForm.get('imageFront')!.value" style="max-height: 100px;" *ngIf="editForm.get('imageFront')!.value" alt="card image"/>
+                        <img [src]="'data:' + editForm.get('imageFrontContentType')!.value + ';base64,' + editForm.get('imageFront')!.value"
+                            style="max-height: 100px;" *ngIf="editForm.get('imageFront')!.value" alt="card image" />
                         <div *ngIf="editForm.get('imageFront')!.value" class="form-text text-danger clearfix">
-                            <span class="pull-left">{{ editForm.get('imageFrontContentType')!.value }}, {{ byteSize(editForm.get('imageFront')!.value) }}</span>
-                            <button type="button" (click)="clearInputImage('imageFront', 'imageFrontContentType', 'file_imageFront')" class="btn btn-secondary btn-xs pull-right">
+                            <span class="pull-left">{{ editForm.get('imageFrontContentType')!.value }}, {{
+                                byteSize(editForm.get('imageFront')!.value) }}</span>
+                            <button type="button"
+                                (click)="clearInputImage('imageFront', 'imageFrontContentType', 'file_imageFront')"
+                                class="btn btn-secondary btn-xs pull-right">
                                 <fa-icon icon="times"></fa-icon>
                             </button>
                         </div>
-                        <input type="file" id="file_imageFront" (change)="setFileData($event, 'imageFront', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+                        <input type="file" id="file_imageFront" (change)="setFileData($event, 'imageFront', true)"
+                            accept="image/*" jhiTranslate="entity.action.addimage" />
                     </div>
                     <input type="hidden" class="form-control" name="imageFront" id="field_imageFront"
-                           formControlName="imageFront"/>
-                    <input type="hidden" class="form-control" name="imageFrontContentType" id="field_imageFrontContentType"
-                           formControlName="imageFrontContentType" />
+                        formControlName="imageFront" />
+                    <input type="hidden" class="form-control" name="imageFrontContentType"
+                        id="field_imageFrontContentType" formControlName="imageFrontContentType" />
                 </div>
             </div>
 
@@ -47,7 +53,8 @@
                     <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
 
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                    class="btn btn-primary">
                     <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>

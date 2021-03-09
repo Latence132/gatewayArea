@@ -6,13 +6,13 @@ import { HealthService, HealthStatus, Health, HealthKey, HealthDetails } from '.
 import { HealthModalComponent } from './health-modal.component';
 
 @Component({
-  selector: 'jhi-health',
+  selector: 'health',
   templateUrl: './health.component.html',
 })
 export class HealthComponent implements OnInit {
   health?: Health;
 
-  constructor(private modalService: NgbModal, private healthService: HealthService) {}
+  constructor(private modalService: NgbModal, private healthService: HealthService) { }
 
   ngOnInit(): void {
     this.refresh();

@@ -11,7 +11,7 @@ import { CardService } from './card.service';
 import { CardDeleteDialogComponent } from './card-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-card',
+  selector: 'card',
   templateUrl: './card.component.html',
 })
 export class CardComponent implements OnInit, OnDestroy {

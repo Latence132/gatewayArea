@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'jhi-docs',
+  selector: 'docs',
   templateUrl: './docs.component.html',
   styleUrls: ['docs.scss'],
 })
-export class DocsComponent {}
+export class DocsComponent { }

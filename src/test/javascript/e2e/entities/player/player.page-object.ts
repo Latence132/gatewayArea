@@ -2,8 +2,8 @@ import { element, by, ElementFinder } from 'protractor';
 
 export class PlayerComponentsPage {
   createButton = element(by.id('jh-create-entity'));
-  deleteButtons = element.all(by.css('jhi-player div table .btn-danger'));
-  title = element.all(by.css('jhi-player div h2#page-heading span')).first();
+  deleteButtons = element.all(by.css('player div table .btn-danger'));
+  title = element.all(by.css('player div h2#page-heading span')).first();
   noResult = element(by.id('no-result'));
   entities = element(by.id('entities'));
 
@@ -25,7 +25,7 @@ export class PlayerComponentsPage {
 }
 
 export class PlayerUpdatePage {
-  pageTitle = element(by.id('jhi-player-heading'));
+  pageTitle = element(by.id('player-heading'));
   saveButton = element(by.id('save-entity'));
   cancelButton = element(by.id('cancel-save'));
 
@@ -57,8 +57,8 @@ export class PlayerUpdatePage {
 }
 
 export class PlayerDeleteDialog {
-  private dialogTitle = element(by.id('jhi-delete-player-heading'));
-  private confirmButton = element(by.id('jhi-confirm-delete-player'));
+  private dialogTitle = element(by.id('delete-player-heading'));
+  private confirmButton = element(by.id('confirm-delete-player'));
 
   async getDialogTitle(): Promise<string> {
     return this.dialogTitle.getAttribute('jhiTranslate');

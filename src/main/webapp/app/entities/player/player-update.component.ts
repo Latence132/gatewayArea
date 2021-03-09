@@ -9,7 +9,7 @@ import { IPlayer, Player } from 'app/shared/model/player.model';
 import { PlayerService } from './player.service';
 
 @Component({
-  selector: 'jhi-player-update',
+  selector: 'player-update',
   templateUrl: './player-update.component.html',
 })
 export class PlayerUpdateComponent implements OnInit {
@@ -20,7 +20,7 @@ export class PlayerUpdateComponent implements OnInit {
     name: [],
   });
 
-  constructor(protected playerService: PlayerService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(protected playerService: PlayerService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ player }) => {

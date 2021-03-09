@@ -1,1 +1,6 @@
-<p>game-play works!</p>
+<div class="row justify-content-center">
+    <div class="col-md-2" *ngFor="let player of game.players; trackById:trackId">
+        <span>{{ player.name }}</span>
+
+    </div>
+</div>

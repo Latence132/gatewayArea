@@ -15,7 +15,7 @@ import { PlayerService } from 'app/entities/player/player.service';
 type SelectableEntity = ICardGroup | IPlayer;
 
 @Component({
-  selector: 'jhi-game-update',
+  selector: 'game-update',
   templateUrl: './game-update.component.html',
 })
 export class GameUpdateComponent implements OnInit {
@@ -36,7 +36,7 @@ export class GameUpdateComponent implements OnInit {
     protected playerService: PlayerService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ game }) => {

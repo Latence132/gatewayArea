@@ -4,7 +4,7 @@ import { flatMap } from 'rxjs/operators';
 import { MetricsService, Metrics, MetricsKey, ThreadDump, Thread } from './metrics.service';
 
 @Component({
-  selector: 'jhi-metrics',
+  selector: 'metrics',
   templateUrl: './metrics.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -13,7 +13,7 @@ export class MetricsComponent implements OnInit {
   threads?: Thread[];
   updatingMetrics = true;
 
-  constructor(private metricsService: MetricsService, private changeDetector: ChangeDetectorRef) {}
+  constructor(private metricsService: MetricsService, private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.refresh();

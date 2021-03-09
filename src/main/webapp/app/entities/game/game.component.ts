@@ -11,7 +11,7 @@ import { GameService } from './game.service';
 import { GameDeleteDialogComponent } from './game-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-game',
+  selector: 'game',
   templateUrl: './game.component.html',
 })
 export class GameComponent implements OnInit, OnDestroy {

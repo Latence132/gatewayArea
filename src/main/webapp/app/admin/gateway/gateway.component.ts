@@ -4,7 +4,7 @@ import { GatewayRoutesService } from './gateway-routes.service';
 import { GatewayRoute } from './gateway-route.model';
 
 @Component({
-  selector: 'jhi-gateway',
+  selector: 'gateway',
   templateUrl: './gateway.component.html',
   providers: [GatewayRoutesService],
 })
@@ -12,7 +12,7 @@ export class GatewayComponent implements OnInit {
   gatewayRoutes: GatewayRoute[] = [];
   updatingRoutes = false;
 
-  constructor(private gatewayRoutesService: GatewayRoutesService) {}
+  constructor(private gatewayRoutesService: GatewayRoutesService) { }
 
   ngOnInit(): void {
     this.refresh();

@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { ProfileService } from './profile.service';
 
 @Component({
-  selector: 'jhi-page-ribbon',
+  selector: 'page-ribbon',
   template: `
     <div class="ribbon" *ngIf="ribbonEnv$ | async as ribbonEnv">
       <a href="" jhiTranslate="global.ribbon.{{ ribbonEnv }}">{{ ribbonEnv }}</a>
@@ -15,7 +15,7 @@ import { ProfileService } from './profile.service';
 export class PageRibbonComponent implements OnInit {
   ribbonEnv$?: Observable<string | undefined>;
 
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit(): void {
     this.ribbonEnv$ = this.profileService.getProfileInfo().pipe(map(profileInfo => profileInfo.ribbonEnv));

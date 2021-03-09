@@ -4,13 +4,13 @@ import { ActivatedRoute } from '@angular/router';
 import { IGame } from 'app/shared/model/game.model';
 
 @Component({
-  selector: 'jhi-game-detail',
+  selector: 'game-detail',
   templateUrl: './game-detail.component.html',
 })
 export class GameDetailComponent implements OnInit {
   game: IGame | null = null;
 
-  constructor(protected activatedRoute: ActivatedRoute) {}
+  constructor(protected activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ game }) => (this.game = game));

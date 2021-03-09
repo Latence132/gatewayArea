@@ -5,13 +5,13 @@ import { JhiDataUtils } from 'ng-jhipster';
 import { ICard } from 'app/shared/model/card.model';
 
 @Component({
-  selector: 'jhi-card-detail',
+  selector: 'card-detail',
   templateUrl: './card-detail.component.html',
 })
 export class CardDetailComponent implements OnInit {
   card: ICard | null = null;
 
-  constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute) {}
+  constructor(protected dataUtils: JhiDataUtils, protected activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ card }) => (this.card = card));

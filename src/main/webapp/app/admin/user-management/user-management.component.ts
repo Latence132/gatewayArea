@@ -13,7 +13,7 @@ import { User } from 'app/core/user/user.model';
 import { UserManagementDeleteDialogComponent } from './user-management-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-user-mgmt',
+  selector: 'user-mgmt',
   templateUrl: './user-management.component.html',
 })
 export class UserManagementComponent implements OnInit, OnDestroy {
@@ -33,7 +33,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
     private router: Router,
     private eventManager: JhiEventManager,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => (this.currentAccount = account));

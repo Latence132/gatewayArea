@@ -1,5 +1,5 @@
 import { browser, ExpectedConditions as ec, promise } from 'protractor';
-import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
+import { NavBarPage, SignInPage } from '../../page-objects/page-objects';
 
 import { CardComponentsPage, CardDeleteDialog, CardUpdatePage } from './card.page-object';
 import * as path from 'path';

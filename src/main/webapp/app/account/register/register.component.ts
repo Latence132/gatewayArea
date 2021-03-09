@@ -8,7 +8,7 @@ import { LoginModalService } from 'app/core/login/login-modal.service';
 import { RegisterService } from './register.service';
 
 @Component({
-  selector: 'jhi-register',
+  selector: 'register',
   templateUrl: './register.component.html',
 })
 export class RegisterComponent implements AfterViewInit {
@@ -41,7 +41,7 @@ export class RegisterComponent implements AfterViewInit {
     private loginModalService: LoginModalService,
     private registerService: RegisterService,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngAfterViewInit(): void {
     if (this.login) {

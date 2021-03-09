@@ -9,7 +9,7 @@ import { Audit } from './audit.model';
 import { AuditsService } from './audits.service';
 
 @Component({
-  selector: 'jhi-audit',
+  selector: 'audit',
   templateUrl: './audits.component.html',
 })
 export class AuditsComponent implements OnInit {
@@ -29,7 +29,7 @@ export class AuditsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private datePipe: DatePipe,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.toDate = this.today();

@@ -20,12 +20,8 @@ import { RouterModule } from '@angular/router';
         path: 'game',
         loadChildren: () => import('./game/game.module').then(m => m.GatewayGameModule),
       },
-      {
-        path: 'card-2',
-        loadChildren: () => import('./card-2/card-2.module').then(m => m.GatewayCard2Module),
-      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],
 })
-export class GatewayEntityModule {}
+export class GatewayEntityModule { }

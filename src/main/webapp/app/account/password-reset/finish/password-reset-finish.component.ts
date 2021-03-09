@@ -6,7 +6,7 @@ import { LoginModalService } from 'app/core/login/login-modal.service';
 import { PasswordResetFinishService } from './password-reset-finish.service';
 
 @Component({
-  selector: 'jhi-password-reset-finish',
+  selector: 'password-reset-finish',
   templateUrl: './password-reset-finish.component.html',
 })
 export class PasswordResetFinishComponent implements OnInit, AfterViewInit {
@@ -29,7 +29,7 @@ export class PasswordResetFinishComponent implements OnInit, AfterViewInit {
     private loginModalService: LoginModalService,
     private route: ActivatedRoute,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {

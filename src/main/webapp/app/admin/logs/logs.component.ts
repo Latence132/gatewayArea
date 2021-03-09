@@ -4,7 +4,7 @@ import { Log, LoggersResponse, Logger, Level } from './log.model';
 import { LogsService } from './logs.service';
 
 @Component({
-  selector: 'jhi-logs',
+  selector: 'logs',
   templateUrl: './logs.component.html',
 })
 export class LogsComponent implements OnInit {
@@ -13,7 +13,7 @@ export class LogsComponent implements OnInit {
   orderProp = 'name';
   reverse = false;
 
-  constructor(private logsService: LogsService) {}
+  constructor(private logsService: LogsService) { }
 
   ngOnInit(): void {
     this.findAndExtractLoggers();

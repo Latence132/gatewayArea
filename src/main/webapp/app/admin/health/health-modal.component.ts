@@ -4,13 +4,13 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { HealthKey, HealthDetails } from './health.service';
 
 @Component({
-  selector: 'jhi-health-modal',
+  selector: 'health-modal',
   templateUrl: './health-modal.component.html',
 })
 export class HealthModalComponent {
   health?: { key: HealthKey; value: HealthDetails };
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbActiveModal) { }
 
   readableValue(value: any): string {
     if (this.health && this.health.key === 'diskSpace') {

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigurationService, Bean, PropertySource } from './configuration.service';
 
 @Component({
-  selector: 'jhi-configuration',
+  selector: 'configuration',
   templateUrl: './configuration.component.html',
 })
 export class ConfigurationComponent implements OnInit {
@@ -13,7 +13,7 @@ export class ConfigurationComponent implements OnInit {
   beansAscending = true;
   propertySources: PropertySource[] = [];
 
-  constructor(private configurationService: ConfigurationService) {}
+  constructor(private configurationService: ConfigurationService) { }
 
   ngOnInit(): void {
     this.configurationService.getBeans().subscribe(beans => {

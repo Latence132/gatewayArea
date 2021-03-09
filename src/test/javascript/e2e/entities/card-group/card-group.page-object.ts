@@ -2,8 +2,8 @@ import { element, by, ElementFinder } from 'protractor';
 
 export class CardGroupComponentsPage {
   createButton = element(by.id('jh-create-entity'));
-  deleteButtons = element.all(by.css('jhi-card-group div table .btn-danger'));
-  title = element.all(by.css('jhi-card-group div h2#page-heading span')).first();
+  deleteButtons = element.all(by.css('card-group div table .btn-danger'));
+  title = element.all(by.css('card-group div h2#page-heading span')).first();
   noResult = element(by.id('no-result'));
   entities = element(by.id('entities'));
 
@@ -25,7 +25,7 @@ export class CardGroupComponentsPage {
 }
 
 export class CardGroupUpdatePage {
-  pageTitle = element(by.id('jhi-card-group-heading'));
+  pageTitle = element(by.id('card-group-heading'));
   saveButton = element(by.id('save-entity'));
   cancelButton = element(by.id('cancel-save'));
 
@@ -75,8 +75,8 @@ export class CardGroupUpdatePage {
 }
 
 export class CardGroupDeleteDialog {
-  private dialogTitle = element(by.id('jhi-delete-cardGroup-heading'));
-  private confirmButton = element(by.id('jhi-confirm-delete-cardGroup'));
+  private dialogTitle = element(by.id('delete-cardGroup-heading'));
+  private confirmButton = element(by.id('confirm-delete-cardGroup'));
 
   async getDialogTitle(): Promise<string> {
     return this.dialogTitle.getAttribute('jhiTranslate');

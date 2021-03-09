@@ -1,7 +1,7 @@
 <div>
     <h2 id="audits-page-heading" jhiTranslate="audits.title">Audits</h2>
 
-    <jhi-alert-error></jhi-alert-error>
+    <alert-error></alert-error>
 
     <div class="row">
         <div class="col-md-5">
@@ -11,12 +11,14 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" jhiTranslate="audits.filter.from">from</span>
                 </div>
-                <input type="date" class="form-control" name="start" [(ngModel)]="fromDate" (ngModelChange)="transition()" required/>
+                <input type="date" class="form-control" name="start" [(ngModel)]="fromDate"
+                    (ngModelChange)="transition()" required />
 
                 <div class="input-group-append">
                     <span class="input-group-text" jhiTranslate="audits.filter.to">To</span>
                 </div>
-                <input type="date" class="form-control" name="end" [(ngModel)]="toDate" (ngModelChange)="transition()" required/>
+                <input type="date" class="form-control" name="end" [(ngModel)]="toDate" (ngModelChange)="transition()"
+                    required />
             </div>
         </div>
     </div>
@@ -28,10 +30,18 @@
     <div class="table-responsive" *ngIf="audits && audits.length > 0">
         <table class="table table-sm table-striped" aria-describedby="audits-page-heading">
             <thead [ngSwitch]="canLoad()">
-                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)" *ngSwitchCase="true">
-                    <th scope="col" jhiSortBy="auditEventDate"><span jhiTranslate="audits.table.header.date">Date</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col" jhiSortBy="principal"><span jhiTranslate="audits.table.header.principal">User</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col" jhiSortBy="auditEventType"><span jhiTranslate="audits.table.header.status">State</span> <fa-icon icon="sort"></fa-icon></th>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="transition.bind(this)"
+                    *ngSwitchCase="true">
+                    <th scope="col" jhiSortBy="auditEventDate"><span jhiTranslate="audits.table.header.date">Date</span>
+                        <fa-icon icon="sort"></fa-icon>
+                    </th>
+                    <th scope="col" jhiSortBy="principal"><span jhiTranslate="audits.table.header.principal">User</span>
+                        <fa-icon icon="sort"></fa-icon>
+                    </th>
+                    <th scope="col" jhiSortBy="auditEventType"><span
+                            jhiTranslate="audits.table.header.status">State</span>
+                        <fa-icon icon="sort"></fa-icon>
+                    </th>
                     <th scope="col"><span jhiTranslate="audits.table.header.data">Extra data</span></th>
                 </tr>
                 <tr *ngSwitchCase="false">
@@ -48,7 +58,9 @@
                     <td>{{ audit.type }}</td>
                     <td>
                         <span *ngIf="audit.data?.message">{{ audit.data.message }}</span>
-                        <span *ngIf="audit.data?.remoteAddress"><span jhiTranslate="audits.table.data.remoteAddress">Remote Address</span> {{ audit.data.remoteAddress }}</span>
+                        <span *ngIf="audit.data?.remoteAddress"><span
+                                jhiTranslate="audits.table.data.remoteAddress">Remote Address</span> {{
+                            audit.data.remoteAddress }}</span>
                     </td>
                 </tr>
             </tbody>
@@ -57,11 +69,13 @@
 
     <div *ngIf="audits && audits.length > 0">
         <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            <item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></item-count>
         </div>
 
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="transition()" [disabled]="!canLoad()"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                [rotate]="true" [boundaryLinks]="true" (pageChange)="transition()" [disabled]="!canLoad()">
+            </ngb-pagination>
         </div>
     </div>
 </div>

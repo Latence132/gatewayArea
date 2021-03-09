@@ -11,7 +11,7 @@ import { ICard } from 'app/shared/model/card.model';
 import { CardService } from 'app/entities/card/card.service';
 
 @Component({
-  selector: 'jhi-card-group-update',
+  selector: 'card-group-update',
   templateUrl: './card-group-update.component.html',
 })
 export class CardGroupUpdateComponent implements OnInit {
@@ -29,7 +29,7 @@ export class CardGroupUpdateComponent implements OnInit {
     protected cardService: CardService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ cardGroup }) => {

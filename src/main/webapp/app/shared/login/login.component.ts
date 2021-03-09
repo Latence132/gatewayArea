@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'app/core/login/login.service';
 
 @Component({
-  selector: 'jhi-login-modal',
+  selector: 'login-modal',
   templateUrl: './login.component.html',
 })
 export class LoginModalComponent implements AfterViewInit {
@@ -21,7 +21,7 @@ export class LoginModalComponent implements AfterViewInit {
     rememberMe: [false],
   });
 
-  constructor(private loginService: LoginService, private router: Router, public activeModal: NgbActiveModal, private fb: FormBuilder) {}
+  constructor(private loginService: LoginService, private router: Router, public activeModal: NgbActiveModal, private fb: FormBuilder) { }
 
   ngAfterViewInit(): void {
     if (this.username) {

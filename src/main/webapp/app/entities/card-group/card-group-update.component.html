@@ -1,10 +1,11 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-card-group-heading" jhiTranslate="gatewayApp.cardGroup.home.createOrEditLabel">Create or edit a Card Group</h2>
+            <h2 id="card-group-heading" jhiTranslate="gatewayApp.cardGroup.home.createOrEditLabel">Create or edit a Card
+                Group</h2>
 
             <div>
-                <jhi-alert-error></jhi-alert-error>
+                <alert-error></alert-error>
 
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
@@ -12,15 +13,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="gatewayApp.cardGroup.name" for="field_name">Name</label>
-                    <input type="text" class="form-control" name="name" id="field_name"
-                           formControlName="name"/>
+                    <label class="form-control-label" jhiTranslate="gatewayApp.cardGroup.name"
+                        for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name" formControlName="name" />
                 </div>
 
                 <div class="form-group">
                     <label jhiTranslate="gatewayApp.cardGroup.card" for="field_cards">Card</label>
                     <select class="form-control" id="field_cards" multiple name="cards" formControlName="cards">
-                        <option [ngValue]="getSelected(editForm.get('cards')!.value, cardOption)" *ngFor="let cardOption of cards; trackBy: trackById">{{ cardOption.id }}</option>
+                        <option [ngValue]="getSelected(editForm.get('cards')!.value, cardOption)"
+                            *ngFor="let cardOption of cards; trackBy: trackById">{{ cardOption.id }}</option>
                     </select>
                 </div>
             </div>
@@ -30,7 +32,8 @@
                     <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
 
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                    class="btn btn-primary">
                     <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>

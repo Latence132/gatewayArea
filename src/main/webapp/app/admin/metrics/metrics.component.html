@@ -10,56 +10,38 @@
     <h3 jhiTranslate="metrics.jvm.title">JVM Metrics</h3>
 
     <div class="row" *ngIf="metrics && !updatingMetrics">
-        <jhi-jvm-memory
-            class="col-md-4"
-            [updating]="updatingMetrics"
-            [jvmMemoryMetrics]="metrics.jvm">
-        </jhi-jvm-memory>
+        <jvm-memory class="col-md-4" [updating]="updatingMetrics" [jvmMemoryMetrics]="metrics.jvm">
+        </jvm-memory>
 
-        <jhi-jvm-threads
-            class="col-md-4"
-            [threadData]="threads">
-        </jhi-jvm-threads>
+        <jvm-threads class="col-md-4" [threadData]="threads">
+        </jvm-threads>
 
-        <jhi-metrics-system
-            class="col-md-4"
-            [updating]="updatingMetrics"
-            [systemMetrics]="metrics.processMetrics">
-        </jhi-metrics-system>
+        <metrics-system class="col-md-4" [updating]="updatingMetrics" [systemMetrics]="metrics.processMetrics">
+        </metrics-system>
     </div>
 
     <div *ngIf="metrics && metricsKeyExists('garbageCollector')">
         <h3 jhiTranslate="metrics.jvm.gc.title">Garbage collector statistics</h3>
 
-        <jhi-metrics-garbagecollector
-            [updating]="updatingMetrics"
-            [garbageCollectorMetrics]="metrics.garbageCollector">
-        </jhi-metrics-garbagecollector>
+        <metrics-garbagecollector [updating]="updatingMetrics" [garbageCollectorMetrics]="metrics.garbageCollector">
+        </metrics-garbagecollector>
     </div>
 
     <div class="well well-lg" *ngIf="updatingMetrics" jhiTranslate="metrics.updating">Updating...</div>
 
-    <jhi-metrics-request
-        *ngIf="metrics && metricsKeyExists('http.server.requests')"
-        [updating]="updatingMetrics"
+    <metrics-request *ngIf="metrics && metricsKeyExists('http.server.requests')" [updating]="updatingMetrics"
         [requestMetrics]="metrics['http.server.requests']">
-    </jhi-metrics-request>
+    </metrics-request>
 
-    <jhi-metrics-endpoints-requests
-        *ngIf="metrics && metricsKeyExists('services')"
-        [updating]="updatingMetrics"
+    <metrics-endpoints-requests *ngIf="metrics && metricsKeyExists('services')" [updating]="updatingMetrics"
         [endpointsRequestsMetrics]="metrics.services">
-    </jhi-metrics-endpoints-requests>
+    </metrics-endpoints-requests>
 
-    <jhi-metrics-cache
-        *ngIf="metrics && metricsKeyExists('cache')"
-        [updating]="updatingMetrics"
+    <metrics-cache *ngIf="metrics && metricsKeyExists('cache')" [updating]="updatingMetrics"
         [cacheMetrics]="metrics.cache">
-    </jhi-metrics-cache>
+    </metrics-cache>
 
-    <jhi-metrics-datasource
-        *ngIf="metrics && metricsKeyExistsAndObjectNotEmpty('databases')"
-        [updating]="updatingMetrics"
+    <metrics-datasource *ngIf="metrics && metricsKeyExistsAndObjectNotEmpty('databases')" [updating]="updatingMetrics"
         [datasourceMetrics]="metrics.databases">
-    </jhi-metrics-datasource>
+    </metrics-datasource>
 </div>

@@ -11,7 +11,7 @@ import { PlayerService } from './player.service';
 import { PlayerDeleteDialogComponent } from './player-delete-dialog.component';
 
 @Component({
-  selector: 'jhi-player',
+  selector: 'player',
   templateUrl: './player.component.html',
 })
 export class PlayerComponent implements OnInit, OnDestroy {
