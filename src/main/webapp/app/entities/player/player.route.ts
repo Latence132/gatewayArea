@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
-import { Resolve, ActivatedRouteSnapshot, Routes, Router } from '@angular/router';
-import { Observable, of, EMPTY } from 'rxjs';
-import { flatMap } from 'rxjs/operators';
-
-import { Authority } from 'app/shared/constants/authority.constants';
+import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, Router, Routes } from '@angular/router';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
+import { Authority } from 'app/shared/constants/authority.constants';
 import { IPlayer, Player } from 'app/shared/model/player.model';
-import { PlayerService } from './player.service';
-import { PlayerComponent } from './player.component';
+import { EMPTY, Observable, of } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
 import { PlayerDetailComponent } from './player-detail.component';
 import { PlayerUpdateComponent } from './player-update.component';
+import { PlayerComponent } from './player.component';
+import { PlayerService } from './player.service';
+
 
 @Injectable({ providedIn: 'root' })
 export class PlayerResolve implements Resolve<IPlayer> {

@@ -5,12 +5,12 @@
 /// @param {Integer} $item-count - Number of items on the circle
 /// @param {Length} $circle-size - Large circle size
 /// @param {Length} $item-size - Single item size
-@mixin on-circle($item-count, $circle-size, $item-size) {
+@mixin on-ovale($item-count, $ovale-witdh, $ovale-height, $item-size) {
   position: relative;
-  width:  $circle-size;
-  height: $circle-size;
+  width:  $ovale-witdh;
+  height: $ovale-height;
   padding: 0;
-  border-radius: 50%; 
+  border-radius: calc($ovale-witdh/2) / calc($ovale-height/2);
   list-style: none;       
   
   > * {
@@ -29,7 +29,7 @@
       &:nth-of-type(#{$i}) {
         transform: 
           rotate($rot * 1deg) 
-          translate($circle-size / 2) 
+          translate($ovale-witdh / 2) 
           rotate($rot * -1deg);
       }
 
@@ -45,9 +45,9 @@
   background: url('../../../../content/images/poker-table.png') no-repeat center top;
   background-size: contain;
 
-  @include on-circle($item-count: 2, $circle-size: 20em, $item-size: 6em); 
+  @include on-ovale($item-count: 2,  $ovale-witdh: 40em, $ovale-height: 20em, $item-size: 6em); 
   margin: 5em auto 0;
-  border: solid 5px tomato;
+  // border: solid 5px tomato;
   
   img { 
     display: block; 

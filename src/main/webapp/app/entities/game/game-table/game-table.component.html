@@ -1,5 +1,8 @@
 <p>table</p>
 <div id="pokerTable">
-    <img src="../../../../content/images/jhipster_family_member_0_head-192.png" alt="player_image">
-    <img src="../../../../content/images/jhipster_family_member_1_head-192.png" alt="player_image">
+    <seat *ngFor="let seat of table!.seats; trackBy:trackByPlayer" [player]="seat.player" [money]="seat.money"
+        [cards]="seat.cards">
+    </seat>
+    <!-- <img src="../../../../content/images/jhipster_family_member_0_head-192.png" alt="player_image">
+    <img src="../../../../content/images/jhipster_family_member_1_head-192.png" alt="player_image"> -->
 </div>

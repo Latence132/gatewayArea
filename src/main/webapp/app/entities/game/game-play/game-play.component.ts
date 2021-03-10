@@ -29,15 +29,17 @@ export class GamePlayComponent implements OnInit {
     this.game.players.forEach(player => {
       this.seats.push(new Seat([cards.shift()!, cards.shift()!], 50, player))
     });
-
     this.table = new Table(cards, 0, this.seats)
   }
+
   ngOnInit(): void {
     console.log("game-play init");
   }
-  trackId(index: number, player: Player): number | undefined {
+
+  trackId(player: Player): number | undefined {
     return player.id;
   }
+  
   shuffle(cards: ICard[] | undefined): void {
     if (cards instanceof Array)
       for (let i = cards.length - 1; i > 0; i--) {

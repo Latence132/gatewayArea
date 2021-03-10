@@ -4,12 +4,12 @@ import { ActivatedRouteSnapshot, Resolve, Router, Routes } from '@angular/router
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 import { Authority } from 'app/shared/constants/authority.constants';
 import { Game, IGame } from 'app/shared/model/game.model';
-import { EMPTY, NEVER, Observable, of } from 'rxjs';
-import { flatMap, startWith } from 'rxjs/operators';
+import { EMPTY, Observable, of } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
 import { GameDetailComponent } from './game-detail.component';
+import { GamePlayComponent } from './game-play/game-play.component';
 import { GameUpdateComponent } from './game-update.component';
 import { GameWelcomeComponent } from './game-welcome/game-welcome.component';
-import { GamePlayComponent } from './game-play/game-play.component';
 import { GameComponent } from './game.component';
 import { GameService } from './game.service';
 

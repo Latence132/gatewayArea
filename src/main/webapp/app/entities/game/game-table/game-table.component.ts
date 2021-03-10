@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IPlayer } from 'app/shared/model/player.model';
+import { ISeat } from 'app/shared/model/seat.model';
+import { ITable } from 'app/shared/model/table.model';
 
 @Component({
   selector: 'game-table',
@@ -6,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game-table.component.scss']
 })
 export class GameTableComponent implements OnInit {
-
+  @Input() table: ITable | undefined;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  trackByPlayer(player: IPlayer): string {
+    return player.name;
   }
 
 }
