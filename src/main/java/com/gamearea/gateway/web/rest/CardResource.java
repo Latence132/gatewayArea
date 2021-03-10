@@ -126,7 +126,7 @@ public class CardResource {
      */
     @GetMapping("/cards/all")
     public List<Card> getAllCard() {
-        log.debug("REST request to get all Cards");
+        log.debug("REST request to getAllCard to get all Cards on list");
         List<Card> cards = cardService.findAll();
         return cards;
     }

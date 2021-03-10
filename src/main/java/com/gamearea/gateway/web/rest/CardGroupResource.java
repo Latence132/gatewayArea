@@ -47,7 +47,9 @@ public class CardGroupResource {
      * {@code POST  /card-groups} : Create a new cardGroup.
      *
      * @param cardGroup the cardGroup to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new cardGroup, or with status {@code 400 (Bad Request)} if the cardGroup has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new cardGroup, or with status {@code 400 (Bad Request)} if
+     *         the cardGroup has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/card-groups")
@@ -57,18 +59,21 @@ public class CardGroupResource {
             throw new BadRequestAlertException("A new cardGroup cannot already have an ID", ENTITY_NAME, "idexists");
         }
         CardGroup result = cardGroupService.save(cardGroup);
-        return ResponseEntity.created(new URI("/api/card-groups/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+        return ResponseEntity
+                .created(new URI("/api/card-groups/" + result.getId())).headers(HeaderUtil
+                        .createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+                .body(result);
     }
 
     /**
      * {@code PUT  /card-groups} : Updates an existing cardGroup.
      *
      * @param cardGroup the cardGroup to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated cardGroup,
-     * or with status {@code 400 (Bad Request)} if the cardGroup is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the cardGroup couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated cardGroup, or with status {@code 400 (Bad Request)} if
+     *         the cardGroup is not valid, or with status
+     *         {@code 500 (Internal Server Error)} if the cardGroup couldn't be
+     *         updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/card-groups")
@@ -78,20 +83,23 @@ public class CardGroupResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         CardGroup result = cardGroupService.save(cardGroup);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, cardGroup.getId().toString()))
-            .body(result);
+        return ResponseEntity.ok().headers(
+                HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, cardGroup.getId().toString()))
+                .body(result);
     }
 
     /**
      * {@code GET  /card-groups} : get all the cardGroups.
      *
-     * @param pageable the pagination information.
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of cardGroups in body.
+     * @param pageable  the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is
+     *                  applicable for many-to-many).
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of cardGroups in body.
      */
     @GetMapping("/card-groups")
-    public ResponseEntity<List<CardGroup>> getAllCardGroups(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public ResponseEntity<List<CardGroup>> getAllCardGroups(Pageable pageable,
+            @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of CardGroups");
         Page<CardGroup> page;
         if (eagerload) {
@@ -99,15 +107,30 @@ public class CardGroupResource {
         } else {
             page = cardGroupService.findAll(pageable);
         }
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        HttpHeaders headers = PaginationUtil
+                .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * {@code GET  /card-groups} : get all the cardGroups.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of cardGroups in body.
+     */
+    @GetMapping("/card-groups/all")
+    public ResponseEntity<List<CardGroup>> getAllCardGroups() {
+        log.debug("REST request to get all CardGroups on a list");
+        List<CardGroup> cards = cardGroupService.findAll2();
+        return ResponseEntity.ok().body(cards);
     }
 
     /**
      * {@code GET  /card-groups/:id} : get the "id" cardGroup.
      *
      * @param id the id of the cardGroup to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the cardGroup, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the cardGroup, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/card-groups/{id}")
     public ResponseEntity<CardGroup> getCardGroup(@PathVariable Long id) {
@@ -126,6 +149,8 @@ public class CardGroupResource {
     public ResponseEntity<Void> deleteCardGroup(@PathVariable Long id) {
         log.debug("REST request to delete CardGroup : {}", id);
         cardGroupService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent()
+                .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
+                .build();
     }
 }

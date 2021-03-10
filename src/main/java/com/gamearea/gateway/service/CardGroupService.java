@@ -1,11 +1,12 @@
 package com.gamearea.gateway.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.gamearea.gateway.domain.CardGroup;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.Optional;
 
 /**
  * Service Interface for managing {@link CardGroup}.
@@ -29,12 +30,18 @@ public interface CardGroupService {
     Page<CardGroup> findAll(Pageable pageable);
 
     /**
+     * Get all the cardGroups.
+     *
+     * @return the list of entities.
+     */
+    List<CardGroup> findAll2();
+
+    /**
      * Get all the cardGroups with eager load of many-to-many relationships.
      *
      * @return the list of entities.
      */
     Page<CardGroup> findAllWithEagerRelationships(Pageable pageable);
-
 
     /**
      * Get the "id" cardGroup.

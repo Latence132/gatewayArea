@@ -13,7 +13,7 @@ type EntityArrayResponseType = HttpResponse<ICardGroup[]>;
 export class CardGroupService {
   public resourceUrl = SERVER_API_URL + 'api/card-groups';
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient) { }
 
   create(cardGroup: ICardGroup): Observable<EntityResponseType> {
     return this.http.post<ICardGroup>(this.resourceUrl, cardGroup, { observe: 'response' });
@@ -25,6 +25,10 @@ export class CardGroupService {
 
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<ICardGroup>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  findAll(): Observable<EntityArrayResponseType> {
+    return this.http.get<ICardGroup[]>(`${this.resourceUrl}/all`, { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {

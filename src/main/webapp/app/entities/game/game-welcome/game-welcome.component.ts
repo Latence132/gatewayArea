@@ -54,11 +54,10 @@ export class GameWelcomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private fb: FormBuilder
   ) { }
-
+  /* eslint-disable no-console */
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(() => {
-
-      this.cardGroupService.query().subscribe(
+      this.cardGroupService.findAll().subscribe(
         (res: HttpResponse<ICardGroup[]>) => {
           this.cardgroups = res.body || []
         });
@@ -72,7 +71,7 @@ export class GameWelcomeComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
-    /* eslint-disable no-console */
+
     const playerName: string = this.editForm.get(['playerUser'])!.value;
     this.playerNameSub = this.playerService.check(playerName).subscribe(
       (res) => {

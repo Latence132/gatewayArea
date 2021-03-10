@@ -26,7 +26,7 @@ export class GamePlayComponent implements OnInit {
     this.game.players?.length;
     this.game.cardGroup
     this.game.state = gameState.RUNNING;
-    //get the cards
+    //  get the cards
     // eslint-disable-next-line
     this.game.players?.forEach((player) => {
 
