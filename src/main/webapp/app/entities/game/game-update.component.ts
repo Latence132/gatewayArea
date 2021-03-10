@@ -72,13 +72,7 @@ export class GameUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IGame {
-    return {
-      ...new Game(),
-      id: this.editForm.get(['id'])!.value,
-      state: this.editForm.get(['state'])!.value,
-      cardGroup: this.editForm.get(['cardGroup'])!.value,
-      players: this.editForm.get(['players'])!.value,
-    };
+    return new Game(this.editForm.get(['id'])!.value, this.editForm.get(['state'])!.value, this.editForm.get(['cardGroup'])!.value, this.editForm.get(['players'])!.value);
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IGame>>): void {

@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { gameState } from 'app/shared/model/enumerations/game-state.model';
 import { Player } from 'app/shared/model/player.model';
-import { ISeat } from 'app/shared/model/seat.model';
-import { ITable } from 'app/shared/model/table.model';
-import { IGame } from 'app/shared/model/game.model';
+import { ISeat, Seat } from 'app/shared/model/seat.model';
+import { ITable, Table } from 'app/shared/model/table.model';
+import { Game, IGame } from 'app/shared/model/game.model';
+import { Card, ICard } from 'app/shared/model/card.model';
 
 @Component({
   selector: 'game-play',
@@ -13,28 +14,38 @@ import { IGame } from 'app/shared/model/game.model';
 })
 export class GamePlayComponent implements OnInit {
   /* eslint-disable no-console */
-  @Input() table: ITable | undefined;
-  public seats: ISeat | undefined;
-  public game: IGame = {};
+  table: ITable;
+  public seats: ISeat[] = [];
+  game: IGame;
 
   constructor(private router: Router) {
-  }
-
-  ngOnInit(): void {
-    console.log(window.history.state);
     this.game = window.history.state;
-    this.game.players?.length;
-    this.game.cardGroup
+    console.log(window.history.state);
     this.game.state = gameState.RUNNING;
+    this.shuffle(this.game.cardGroup.cards);
     //  get the cards
-    // eslint-disable-next-line
-    this.game.players?.forEach((player) => {
+    const cards: ICard[] = this.game.cardGroup.cards!;
+    //set the table
+    this.game.players.forEach(player => {
+      this.seats.push(new Seat([cards.shift()!, cards.shift()!], 50, player))
+    });
 
-    })
-    console.log(this.game);
+    this.table = new Table(cards, 0, this.seats)
+  }
+  ngOnInit(): void {
+    console.log("game-play init");
   }
   trackId(index: number, player: Player): number | undefined {
     return player.id;
+  }
+  shuffle(cards: ICard[] | undefined): void {
+    if (cards instanceof Array)
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * i);
+        const temp = cards[i];
+        cards[i] = cards[j];
+        cards[j] = temp;
+      }
   }
   /* eslint-enable no-console */
 }

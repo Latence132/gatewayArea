@@ -50,11 +50,7 @@ export class PlayerUpdateComponent implements OnInit {
   }
 
   private createFromForm(): IPlayer {
-    return {
-      ...new Player(),
-      id: this.editForm.get(['id'])!.value,
-      name: this.editForm.get(['name'])!.value,
-    };
+    return new Player(this.editForm.get(['id'])!.value, this.editForm.get(['name'])!.value);
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPlayer>>): void {

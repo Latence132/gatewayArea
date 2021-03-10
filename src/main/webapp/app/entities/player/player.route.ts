@@ -14,7 +14,7 @@ import { PlayerUpdateComponent } from './player-update.component';
 
 @Injectable({ providedIn: 'root' })
 export class PlayerResolve implements Resolve<IPlayer> {
-  constructor(private service: PlayerService, private router: Router) {}
+  constructor(private service: PlayerService, private router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<IPlayer> | Observable<never> {
     const id = route.params['id'];
@@ -30,7 +30,8 @@ export class PlayerResolve implements Resolve<IPlayer> {
         })
       );
     }
-    return of(new Player());
+    // here if no player Id
+    return of();
   }
 }
 

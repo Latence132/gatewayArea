@@ -4,8 +4,8 @@ import { ActivatedRouteSnapshot, Resolve, Router, Routes } from '@angular/router
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 import { Authority } from 'app/shared/constants/authority.constants';
 import { Game, IGame } from 'app/shared/model/game.model';
-import { EMPTY, Observable, of } from 'rxjs';
-import { flatMap } from 'rxjs/operators';
+import { EMPTY, NEVER, Observable, of } from 'rxjs';
+import { flatMap, startWith } from 'rxjs/operators';
 import { GameDetailComponent } from './game-detail.component';
 import { GameUpdateComponent } from './game-update.component';
 import { GameWelcomeComponent } from './game-welcome/game-welcome.component';
@@ -32,7 +32,9 @@ export class GameResolve implements Resolve<IGame> {
         })
       );
     }
-    return of(new Game());
+    // here if no id
+    // return of(new Game());
+    return of();
   }
 }
 

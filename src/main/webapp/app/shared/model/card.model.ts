@@ -17,5 +17,5 @@ export class Card implements ICard {
     public imageFrontContentType?: string,
     public imageFront?: any,
     public groups?: ICardGroup[]
-  ) {}
+  ) { }
 }

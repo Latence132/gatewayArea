@@ -96,13 +96,7 @@ export class GameWelcomeComponent implements OnInit, OnDestroy {
   }
 
   private createFromForm(userPlayer: Player): IGame {
-    return {
-      ...new Game(),
-      id: this.editForm.get(['id'])!.value,
-      state: gameState.STARTING,
-      cardGroup: this.editForm.get(['cardGroup'])!.value,
-      players: [userPlayer, ...this.editForm.get(['players'])!.value]
-    };
+    return new Game(this.editForm.get(['id'])!.value, gameState.STARTING, this.editForm.get(['cardGroup'])!.value, [userPlayer, ...this.editForm.get(['players'])!.value]);
   }
 
   // protected subscribeToSaveResponse(result: Observable<HttpResponse<IGame>>): void {

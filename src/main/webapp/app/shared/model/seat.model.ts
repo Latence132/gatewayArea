@@ -3,16 +3,16 @@ import { ICard } from './card.model';
 import { IPlayer } from './player.model';
 
 export interface ISeat {
-    cards?: ICard[];
-    money?: number;
-    player?: IPlayer;
+    cards: ICard[];
+    money: number;
+    player: IPlayer;
 }
 
 export class Seat implements ISeat {
     constructor(
-        public cards?: ICard[],
-        public money?: number,
-        public player?: IPlayer) {
+        public cards: ICard[],
+        public money: number,
+        public player: IPlayer) {
     }
 
 }
