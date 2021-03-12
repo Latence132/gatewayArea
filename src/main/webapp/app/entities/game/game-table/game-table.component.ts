@@ -6,17 +6,15 @@ import { ITable } from 'app/shared/model/table.model';
 @Component({
   selector: 'game-table',
   templateUrl: './game-table.component.html',
-  styleUrls: ['./game-table.component.scss']
+  styleUrls: ['./game-table.component.scss'],
 })
 export class GameTableComponent implements OnInit {
   @Input() table: ITable | undefined;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  trackBySeat(player: ISeat): string {
+    return player.player.name;
   }
-
-  trackByPlayer(player: IPlayer): string {
-    return player.name;
-  }
-
 }

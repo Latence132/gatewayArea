@@ -1,5 +1,6 @@
-<div id="pokerTable" class="row">
-    <seat class="col-md-4" *ngFor="let seat of table!.seats; trackBy:trackByPlayer; let index = index"
-        [attr.data-index]="index" [player]="seat.player" [money]="seat.money" [cards]="seat.cards">
+<div class="d-flex justify-content-center">
+    <seat class="h-12 p-2" *ngFor="let seat of table!.seats; let index = index" [attr.data-index]="index"
+        [player]="seat.player" [money]="seat.money" [cards]="seat.cards">
     </seat>
 </div>
+<div class="pokerTable"></div>

@@ -6,36 +6,34 @@
 /// @param {Length} $ovale-height- Height ovale size
 @mixin on-ovale($ovale-witdh, $ovale-height) {
   position: relative;
-  width:  $ovale-witdh;
+  width: $ovale-witdh;
   height: $ovale-height;
   padding: 0;
-  border-radius: calc($ovale-witdh/2) / calc($ovale-height/2);   
-  
+  border-radius: calc($ovale-witdh/2) / calc($ovale-height/2);
 }
 
-#pokerTable {
-  display: inline-block;
-  // width: 347px;
-  // height: 497px;
+.pokerTable {
+  display: block;
   background: url('../../../../content/images/poker-table.png') no-repeat center top;
   background-size: contain;
 
-  @include on-ovale($ovale-witdh: 40em, $ovale-height: 20em); 
-  margin: 5em auto 0;
+  border: 0.1rem dashed white;
+  height: 300px;
+  // @include on-ovale($ovale-witdh: 40em, $ovale-height: 20em);
+  // margin: 5em auto 0;
   // border: solid 5px tomato;
-  
-  seat { 
-    display: inline-block; 
-    max-width: 100%; 
-    border-radius: 80%;
-    filter: grayscale(100%);
-    border: solid 5px tomato;
-    transition: .15s;
-    
-    &:hover,
-    &:active {
-      filter: grayscale(0);
-    }
-  }
-}
 
+  // seat {
+  //   // display: inline-block;
+  //   // max-width: 100%;
+  //   // border-radius: 80%;
+  //   // filter: grayscale(100%);
+  //   // border: solid 5px tomato;
+  //   // transition: .15s;
+  //   border: 1  pink solid;
+  //   &:hover,
+  //   &:active {
+  //     filter: grayscale(0);
+  //   }
+  // }
+}
