@@ -2,57 +2,32 @@
 /// Mixin to place items on a circle
 /// @author Hugo Giraudel
 /// @author Ana Tudor
-/// @param {Integer} $item-count - Number of items on the circle
-/// @param {Length} $circle-size - Large circle size
-/// @param {Length} $item-size - Single item size
-@mixin on-ovale($item-count, $ovale-witdh, $ovale-height, $item-size) {
+/// @param {Length} $ovale-witdh - Large ovale size
+/// @param {Length} $ovale-height- Height ovale size
+@mixin on-ovale($ovale-witdh, $ovale-height) {
   position: relative;
   width:  $ovale-witdh;
   height: $ovale-height;
   padding: 0;
-  border-radius: calc($ovale-witdh/2) / calc($ovale-height/2);
-  list-style: none;       
+  border-radius: calc($ovale-witdh/2) / calc($ovale-height/2);   
   
-  > * {
-    display: block;
-    position: absolute;
-    top:  50%; 
-    left: 50%;
-    width:  $item-size;
-    height: $item-size;
-    margin: -($item-size / 2);
-  
-    $angle: (360 / $item-count);
-    $rot: 0;
-
-    @for $i from 1 through $item-count {
-      &:nth-of-type(#{$i}) {
-        transform: 
-          rotate($rot * 1deg) 
-          translate($ovale-witdh / 2) 
-          rotate($rot * -1deg);
-      }
-
-      $rot: $rot + $angle;
-    }
-  }
 }
 
 #pokerTable {
   display: inline-block;
-  width: 347px;
-  height: 497px;
+  // width: 347px;
+  // height: 497px;
   background: url('../../../../content/images/poker-table.png') no-repeat center top;
   background-size: contain;
 
-  @include on-ovale($item-count: 2,  $ovale-witdh: 40em, $ovale-height: 20em, $item-size: 6em); 
+  @include on-ovale($ovale-witdh: 40em, $ovale-height: 20em); 
   margin: 5em auto 0;
   // border: solid 5px tomato;
   
-  img { 
-    display: block; 
+  seat { 
+    display: inline-block; 
     max-width: 100%; 
-    border-radius: 50%;
+    border-radius: 80%;
     filter: grayscale(100%);
     border: solid 5px tomato;
     transition: .15s;

@@ -1,8 +1,10 @@
 <img src="../../../../../content/images/jhipster_family_member_0_head-192.png" alt="player_image">
-<p>{{ player.name }}</p>
-<p>{{ money }}</p>
-<p>
-    <img *ngFor="let card of cards" [src]="'data:' + card!.imageFrontContentType + ';base64,' + card!.imageFront"
-        style="max-width: 100%;" alt="card image">
-
-</p>
+<div>
+    <p>{{ player.name }}</p>
+    <p>{{ money }}</p>
+</div>
+<div>
+    <img *ngFor="let card of cards; let index = index" [attr.data-index]="index"
+        [src]="'data:' + card!.imageFrontContentType + ';base64,' + card!.imageFront" style="max-width: 100%;"
+        alt="card image">
+</div>
